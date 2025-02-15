@@ -1,0 +1,12 @@
+[package]
+name = "tiny-link-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.8.1", features = ["http2"] }
+dotenvy = "0.15.7"
+serde = "1.0.217"
+serde_json = "1.0.138"
+sqlx = { version = "0.8.3", features = ["runtime-tokio", "tls-rustls-ring", "postgres", "migrate", "json", "chrono"] }
+tokio = { version = "1.43.0", features = ["full"] }
