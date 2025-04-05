@@ -5,14 +5,14 @@ use axum::{
 };
 use serde_json::{json, Value};
 
-pub async fn create_path() -> Json<Value> {
+async fn create_path() -> Json<Value> {
     Json(json!({
         "code": 0,
         "message": "created path",
     }))
 }
 
-pub async fn get_all_paths() -> Json<Value> {
+async fn get_all_paths() -> Json<Value> {
     Json(json!({
         "code": 0,
         "message": "got all paths",
@@ -24,21 +24,21 @@ pub async fn get_all_paths() -> Json<Value> {
     }))
 }
 
-pub async fn get_a_path(Path(id): Path<String>) -> Json<Value> {
+async fn get_a_path(Path(id): Path<String>) -> Json<Value> {
     Json(json!({
         "code": 0,
         "message": format!("got path {}", id),
     }))
 }
 
-pub async fn edit_path(Path(id): Path<String>) -> Json<Value> {
+async fn edit_path(Path(id): Path<String>) -> Json<Value> {
     Json(json!({
         "code": 0,
         "message": format!("edited path {}", id),
     }))
 }
 
-pub async fn remove_path(Path(id): Path<String>) -> Json<Value> {
+async fn remove_path(Path(id): Path<String>) -> Json<Value> {
     Json(json!({
         "code": 0,
         "message": format!("removed path {}", id),
@@ -47,10 +47,10 @@ pub async fn remove_path(Path(id): Path<String>) -> Json<Value> {
 
 pub fn path_router() -> Router {
     Router::new()
-        .route("/app/path", post(create_path).get(get_a_path))
+        .route("/path", post(create_path).get(get_a_path))
         .route(
-            "/app/path/{id}",
+            "/path/{id}",
             get(get_a_path).patch(edit_path).delete(remove_path),
         )
-        .route("/app/paths", get(get_all_paths))
+        .route("/paths", get(get_all_paths))
 }
